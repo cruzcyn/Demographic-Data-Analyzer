@@ -17,21 +17,23 @@ def calculate_demographic_data():
     bachelors_count = len(df[df.education == "Bachelors"])
     percentage_bachelors = round((bachelors_count/ len(df)) * 100, 2)
 
-#    # TODO What percentage of people with advanced education (`Bachelors`, `Masters`, or `Doctorate`) 
-     # make more than 50K?
-    # advanced_ed = df[df.education == "Bachelors" or "Masters" or "Doctorate"]
-    # print(len(advanced_ed))
-    
-#    # TODO What percentage of people without advanced education make more than 50K?
-#
-#    ## with and without `Bachelors`, `Masters`, or `Doctorate`
-#    higher_education = None
-#    lower_education = None
-#
-#    ##  percentage with salary >50K
-#    higher_education_rich = None
-#    lower_education_rich = None
-#
+    # Percentage of people with higher education who earn more than 50K a year:
+    higher_education = df[(df.education == "Bachelors") | (df.education == "Masters") | 
+                          (df.education == "Doctorate")]
+    rich_higher_ed = higher_education[higher_education.salary == ">50K"]
+
+    higher_education_rich = round((len(rich_higher_ed) / len(higher_education)) * 100, 2)
+
+    # Percentage of people without higher education who earn more than 50K a year:
+    lower_education = df[(df.education != "Bachelors") | (df.education != "Masters") | 
+                         (df.education != "Doctorate")]
+    rich_lower_ed = lower_education[lower_education.salary == ">50K"]
+
+    lower_education_rich = round((len(rich_lower_ed) / len(lower_education)) * 100, 2)
+
+    print(higher_education_rich)
+    print(lower_education_rich)
+
 #    # TODO What is the minimum number of hours a person works per week (hours-per-week feature)?
 #    min_work_hours = None
 #
