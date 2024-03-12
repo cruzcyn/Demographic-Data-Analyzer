@@ -40,10 +40,10 @@ def calculate_demographic_data():
     rich_min_work = min_work[min_work.salary == ">50K"]
 
     rich_percentage = round((len(rich_min_work) / len(min_work)) * 100, 2)
-    print(rich_percentage)
-#
-#    # TODO What country has the highest percentage of people that earn >50K and what is that percentage?
-#    highest_earning_country = None
+
+    # TODO What country has the highest percentage of people that earn >50K and what 
+    # is that percentage?
+    people_by_country = df.groupby(["native-country", "salary"], as_index=False)
 #    highest_earning_country_percentage = None
 #
 #    # TODO Identify the most popular occupation for those who earn >50K in India.
