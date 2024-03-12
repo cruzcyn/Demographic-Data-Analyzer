@@ -31,16 +31,16 @@ def calculate_demographic_data():
 
     lower_education_rich = round((len(rich_lower_ed) / len(lower_education)) * 100, 2)
 
-    print(higher_education_rich)
-    print(lower_education_rich)
+    # Minimum number of hours a person works per week
+    min_work_hours = df["hours-per-week"].min()
 
-#    # TODO What is the minimum number of hours a person works per week (hours-per-week feature)?
-#    min_work_hours = None
-#
-#    # TODO What percentage of the people who work the minimum number of hours per week have a salary of >50K?
-#    num_min_workers = None
-#
-#    rich_percentage = None
+    # Percentage of the people who work the minimum number of hours per week who 
+    # have a salary of >50K
+    min_work = df[df["hours-per-week"] == min_work_hours]
+    rich_min_work = min_work[min_work.salary == ">50K"]
+
+    rich_percentage = round((len(rich_min_work) / len(min_work)) * 100, 2)
+    print(rich_percentage)
 #
 #    # TODO What country has the highest percentage of people that earn >50K and what is that percentage?
 #    highest_earning_country = None
