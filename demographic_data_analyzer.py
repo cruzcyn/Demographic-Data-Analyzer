@@ -22,8 +22,7 @@ def calculate_demographic_data(print_data=True):
     # Percentage of people with higher education who earn more than 50K a year:
     higher_ed_degrees = ["Bachelors", "Masters", "Doctorate"]
 
-    higher_education = df[(df.education == "Bachelors") | (df.education == "Masters") | 
-                          (df.education == "Doctorate")]
+    higher_education = df[df.education.isin(higher_ed_degrees)]
     rich_higher_ed = higher_education[higher_education.salary == ">50K"]
 
     higher_education_rich = round(len(rich_higher_ed) / len(higher_education) * 100, 1)
